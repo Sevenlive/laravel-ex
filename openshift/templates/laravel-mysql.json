@@ -4,13 +4,13 @@
   "metadata": {
     "name": "laravel-mysql-persistent",
     "annotations": {
-      "openshift.io/display-name": "Laravel + MySQL (Persistent)",
-      "description": "An example Laravel application with a MySQL database. For more information about using this template, including OpenShift considerations, see https://github.com/luciddreamz/laravel-ex/blob/master/readme.md.",
+      "openshift.io/display-name": "Laravel + MySQL (Persistent) - NDR Prototyp Image",
+      "description": "Eine Laravel Beispielanwendung mit Datenbank. Für mehr Infos besuche den Prototyp Blog oder das im Example erwähnte Github.",
       "tags": "quickstart,php,laravel",
       "iconClass": "icon-laravel"
     }
   },
-  "message": "The following service(s) have been created in your project: ${NAME}, ${DATABASE_SERVICE_NAME}.\n\nFor more information about using this template, including OpenShift considerations, see https://github.com/luciddreamz/laravel-ex/blob/master/readme.md.",
+  "message": "Die folgenden service(s) wurden für das Projekt erstellt: ${NAME}, ${DATABASE_SERVICE_NAME}.\n\nFür mehr informationen besuche den Prototyp Blog oder das im Example erwähnte Github.",
   "labels": {
     "template": "laravel-mysql-persistent"
   },
@@ -30,7 +30,7 @@
     "metadata": {
       "name": "${NAME}",
       "annotations": {
-        "description": "Exposes and load balances the application pods",
+        "description": "Exponiert und load balances die Anwendungspods",
         "service.alpha.openshift.io/dependencies": "[{\"name\": \"${DATABASE_SERVICE_NAME}\", \"kind\": \"Service\"}]"
       }
     },
@@ -90,7 +90,7 @@
           "from": {
             "kind": "ImageStreamTag",
             "namespace": "${NAMESPACE}",
-            "name": "php:7.0"
+            "name": "php:7.2"
           },
           "env": [{
             "name": "COMPOSER_MIRROR",
@@ -448,44 +448,44 @@
   }, {
     "name": "APPLICATION_DOMAIN",
     "displayName": "Application Hostname",
-    "description": "The exposed hostname that will route to the Laravel service, if left blank a value will be defaulted.",
+    "description": "Der nach außen sichtbare Hostname für den Laravel Service, wenn leer dann wird ein Wert generiert.",
     "value": ""
   }, {
     "name": "GITHUB_WEBHOOK_SECRET",
     "displayName": "GitHub Webhook Secret",
-    "description": "A secret string used to configure the GitHub webhook.",
+    "description": "Ein geheimes string, zum konfigurieren des Github Webhooks.",
     "generate": "expression",
     "from": "[a-zA-Z0-9]{40}"
   }, {
     "name": "DATABASE_SERVICE_NAME",
-    "displayName": "Database Service Name",
+    "displayName": "Datenbank Service Name",
     "value": "mysql",
     "required": true
   }, {
     "name": "DATABASE_ENGINE",
-    "displayName": "Database Engine",
+    "displayName": "Datenbank Engine",
     "description": "Database engine: mysql (default), pgsql, or sqlite.",
     "value": "mysql",
     "required": true
   }, {
     "name": "DATABASE_NAME",
-    "displayName": "Database Name",
+    "displayName": "Datenbank Name",
     "value": "default",
     "required": true
   }, {
     "name": "DATABASE_USER",
-    "displayName": "Database User",
+    "displayName": "Datenbank Nutzer",
     "value": "laravel",
     "required": true
   }, {
     "name": "DATABASE_PASSWORD",
-    "displayName": "Database Password",
+    "displayName": "Datenbank Passwort",
     "generate": "expression",
     "from": "[a-zA-Z0-9]{16}"
   }, {
     "name": "LARAVEL_APP_KEY",
     "displayName": "Laravel Encryption Key",
-    "description": "Set this to a 32 character random string.",
+    "description": "32 Buchstaben, die komplett random sind.",
     "generate": "expression",
     "from": "[\\w]{32}"
   }]
